@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>X-O Game</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>tic tac toe</h1>
+        <h3>Game starts by just tap on the box</h3>
+        <h5>first player starts as <span>Player X</span></h5>
+        <h5>second player starts as <span>Player O</span></h5>
+        <div class="game">
+            <div class="box" id="box-1"></div>
+            <div class="box" id="box-2"><span class="x"></span></div>
+            <div class="box" id="box-3"></div>
+            <div class="box" id="box-4"></div>
+            <div class="box" id="box-5"><span class="o"></span></div>
+            <div class="box" id="box-6"></div>
+            <div class="box" id="box-7"></div>
+            <div class="box" id="box-8"></div>
+            <div class="box" id="box-9"></div>
+        </div>
+        <div class="reset-btn">
+            <button type="button" class="rst-btn" id="rst-btn">reset</button>
+        </div>
+        <div class="result" id="result">The winner is <span class="winner" id="winner">Player X</span></div>
+        <span class="d-none x"></span>
+        <span class="d-none o"></span>
+    </div>
+</body>
+</html>
