@@ -60,14 +60,12 @@ const win = () => {
             }
             isWin = true
         } else {
-            if(!isWin) {
-                if(xs + os == data.length) {
-                    result.classList.remove('d-none')
-                    reply.classList.remove('d-none')
-                    result.textContent = 'oops no one won' 
-                    localStorage.setItem('x-score', xscore)
-                    localStorage.setItem('o-score', oscore)
-                }
+            if(xs + os == data.length) {
+                result.classList.remove('d-none')
+                reply.classList.remove('d-none')
+                result.textContent = 'oops no one won' 
+                localStorage.setItem('x-score', xscore)
+                localStorage.setItem('o-score', oscore)
             }
         }
     })
