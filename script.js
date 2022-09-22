@@ -19,15 +19,6 @@ let os = 0
 // make the app logic
 boxes.forEach((box) => {
     box.classList.add('xo')
-    if(localStorage.getItem('game') !== null) {
-        if(box.textContent == '') {
-            let dataGame = localStorage.getItem('game').split(',')
-            box.textContent = dataGame[boxes.indexOf(box)]
-            if(box.textContent != 'x' && box.textContent != 'o') {
-                box.textContent = ''
-            }
-        }
-    }
     if(localStorage.getItem('x-score') !== null || localStorage.getItem('o-score')) {
         xScore.textContent = localStorage.getItem('x-score')
         oScore.textContent = localStorage.getItem('o-score')
@@ -39,7 +30,6 @@ boxes.forEach((box) => {
                 box.textContent = 'o'
                 xo = boxes.indexOf(box)
                 data[xo] = box.textContent
-                localStorage.setItem('game', data)
                 xs++
             }
         } else {
@@ -47,14 +37,7 @@ boxes.forEach((box) => {
                 box.textContent = 'x'
                 xo = boxes.indexOf(box)
                 data[xo] = box.textContent
-                localStorage.setItem('game', data)
                 os++
-            }
-        }
-        if(!isWin) {
-            if(xs + os == data.length) {
-                result.classList.remove('d-none')
-                result.textContent = 'oops no one won' 
             }
         }
         win()
@@ -76,21 +59,26 @@ const win = () => {
                 localStorage.setItem('x-score', xscore)
             }
             isWin = true
+        } else {
+            if(!isWin) {
+                if(xs + os == data.length) {
+                    result.classList.remove('d-none')
+                    reply.classList.remove('d-none')
+                    result.textContent = 'oops no one won' 
+                    localStorage.setItem('x-score', xscore)
+                    localStorage.setItem('o-score', oscore)
+                }
+            }
         }
     })
-    if(xs == 5 && os == 4) {
-        console.log(xs + os)
-    }
 }
 // Reset the game
 reset.addEventListener('click', () => {
     data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-    dataGame = []
     localStorage.clear()
     location.reload()
 })
 // Reply the game
 reply.addEventListener('click', () => {
-    localStorage.removeItem('game')
     location.reload()
 })
