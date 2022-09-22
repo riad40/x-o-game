@@ -12,6 +12,9 @@ let counter = 0
 let xo = ''
 let xscore = +localStorage.getItem("x-score") || 0
 let oscore = +localStorage.getItem("o-score") || 0
+let isWin = false
+let xs = 0
+let os = 0
 // make the app logic
 boxes.forEach((box) => {
     box.classList.add('xo')
@@ -23,25 +26,38 @@ boxes.forEach((box) => {
                 box.textContent = ''
             }
         }
-    } else if(localStorage.getItem('x-score') !== null || localStorage.getItem('o-score')) {
+    }
+    if(localStorage.getItem('x-score') !== null || localStorage.getItem('o-score')) {
         xScore.textContent = localStorage.getItem('x-score')
         oScore.textContent = localStorage.getItem('o-score')
     }
     box.addEventListener('click', e => {
         counter++
         if(counter%2 == 0) {
-            box.textContent = 'o'
-            xo = boxes.indexOf(box)
-            data[xo] = box.textContent
-            // localStorage.setItem('game', data)
+            if(!isWin) {
+                box.textContent = 'o'
+                xo = boxes.indexOf(box)
+                data[xo] = box.textContent
+                localStorage.setItem('game', data)
+                xs++
+            }
         } else {
-            box.textContent = 'x'
-            xo = boxes.indexOf(box)
-            data[xo] = box.textContent
-            // localStorage.setItem('game', data)
+            if(!isWin) {
+                box.textContent = 'x'
+                xo = boxes.indexOf(box)
+                data[xo] = box.textContent
+                localStorage.setItem('game', data)
+                os++
+            }
+        }
+        if(!isWin) {
+            if(xs + os == data.length) {
+                result.classList.remove('d-none')
+                result.textContent = 'oops no one won' 
+            }
         }
         win()
-    }, {once : true})     
+    }, {once : true})
 })
 // get the winner
 const win = () => {
@@ -50,7 +66,6 @@ const win = () => {
         if(data[w[0]] == data[w[1]] && data[w[0]] == data[w[2]]){
             winner.textContent = 'player ' + data[w[0]]
             result.classList.remove('d-none')
-            console.log(data[w[0]])
             if(data[w[0]] == 'x') {
                 localStorage.setItem('x-score', xscore+1)
                 localStorage.setItem('o-score', oscore)
@@ -58,8 +73,12 @@ const win = () => {
                 localStorage.setItem('o-score', oscore+1)
                 localStorage.setItem('x-score', xscore)
             }
+            isWin = true
         }
     })
+    if(xs == 5 && os == 4) {
+        console.log(xs + os)
+    }
 }
 // Reset game
 reset.addEventListener('click', () => {
