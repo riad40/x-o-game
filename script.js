@@ -2,6 +2,7 @@
 const boxes1 = document.querySelectorAll('.box')
 const winner = document.querySelector('#winner')
 const result = document.querySelector('#result')
+const reset = document.querySelector('#rst-btn')
 // variables
 let data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 let boxes = [...boxes1]
@@ -48,3 +49,10 @@ const win = () => {
         }
     })
 }
+// Reset game
+reset.addEventListener('click', () => {
+    data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+    dataGame = []
+    localStorage.clear()
+    location.reload()
+})
