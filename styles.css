@@ -88,19 +88,8 @@ body {
     justify-content: center;
     align-items: center;
 }
-.x {
+.xo {
     font-size: 40px;
     font-weight: bold;
     color: #41CD7D;
-}
-.x::after {
-    content: "X";
-}
-.o {
-    font-size: 40px;
-    font-weight: bold;
-    color: #41CD7D;
-}
-.o::after {
-    content: "O"; 
 }
