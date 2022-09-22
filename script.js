@@ -7,8 +7,7 @@ const reset = document.querySelector('#rst-btn')
 let data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 let boxes = [...boxes1]
 let counter = 0
-let x = ''
-let o = ''
+let xo = ''
 // make the app logic
 boxes.forEach((box) => {
     box.classList.add('xo')
@@ -25,17 +24,16 @@ boxes.forEach((box) => {
         counter++
         if(counter%2 == 0) {
             box.textContent = 'o'
-            o = boxes.indexOf(box)
-            data[o] = box.textContent
+            xo = boxes.indexOf(box)
+            data[xo] = box.textContent
+            localStorage.setItem('game', data)
         } else {
             box.textContent = 'x'
-            o = boxes.indexOf(box)
-            data[o] = box.textContent
+            xo = boxes.indexOf(box)
+            data[xo] = box.textContent
+            localStorage.setItem('game', data)
         }
-        if((data.includes('x', 3) && data.includes('o', 2)) || (data.includes('o', 3) && data.includes('x', 2))) {
-            win()
-        }
-        localStorage.setItem('game', data)
+        win()
     }, {once : true})     
 })
 // get the winner
@@ -45,7 +43,7 @@ const win = () => {
         if(data[w[0]] == data[w[1]] && data[w[0]] == data[w[2]]){
             winner.textContent = 'player ' + data[w[0]]
             result.classList.remove('d-none')
-            localStorage.clear()    
+            localStorage.clear()
         }
     })
 }
