@@ -3,6 +3,7 @@ const boxes1 = document.querySelectorAll('.box')
 const winner = document.querySelector('#winner')
 const result = document.querySelector('#result')
 const reset = document.querySelector('#rst-btn')
+const reply = document.querySelector('#rply-btn')
 const xScore = document.querySelector('#x-score')
 const oScore = document.querySelector('#o-score')
 // variables
@@ -66,6 +67,7 @@ const win = () => {
         if(data[w[0]] == data[w[1]] && data[w[0]] == data[w[2]]){
             winner.textContent = 'player ' + data[w[0]]
             result.classList.remove('d-none')
+            reply.classList.remove('d-none')
             if(data[w[0]] == 'x') {
                 localStorage.setItem('x-score', xscore+1)
                 localStorage.setItem('o-score', oscore)
@@ -80,10 +82,15 @@ const win = () => {
         console.log(xs + os)
     }
 }
-// Reset game
+// Reset the game
 reset.addEventListener('click', () => {
     data = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
     dataGame = []
     localStorage.clear()
+    location.reload()
+})
+// Reply the game
+reply.addEventListener('click', () => {
+    localStorage.removeItem('game')
     location.reload()
 })

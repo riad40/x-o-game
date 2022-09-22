@@ -38,12 +38,14 @@ body {
     text-transform: capitalize;
     color: lightgrey;
 }
-.wrapper .reset-btn {
+.wrapper .btns {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 0 0 10px 0;
 }
-.wrapper .reset-btn .rst-btn {
+.wrapper .btns .rst-btn,
+.rply-btn {
     padding: 5px 10px;
     border: 0;
     border-radius: 5px;
@@ -55,7 +57,7 @@ body {
     cursor: pointer;
     font-weight: 500;
 }
-.wrapper .reset-btn .rst-btn:hover {
+.wrapper .btns .rst-btn:hover {
     opacity: 0.5;
 }
 .wrapper .result {
@@ -95,4 +97,7 @@ body {
 }
 .score {
     color: #41CD7D;
+}
+.rply-btn {
+    margin-bottom: 20px;
 }
